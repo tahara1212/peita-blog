@@ -1,0 +1,25 @@
+.header {
+  align-items: center;
+  background-color: var(--color-bg-gray-light);
+  display: flex;
+  height: 100px;
+  justify-content: center;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--content-width);
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  margin-top: 25px;
+  gap: 10px;
+}
