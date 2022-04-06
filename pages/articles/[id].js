@@ -2,7 +2,7 @@ import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 
 import { client } from '../../libs/client';
-import styles from '../../styles/Home.module.scss';
+import styles from '../../styles/Articles.module.scss';
 import 'highlight.js/styles/night-owl.css';
 import Layout from '../../src/components/Layout/Layout';
 import Head from 'next/head';

@@ -8,7 +8,9 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <h1 className={styles.title}>{SITE_TITLE}</h1>
+        <h1 className={styles.title}>
+          <img src="/images/logo.png" width={160} />
+        </h1>
         <nav className={styles.nav}>
           <Link href="/">home</Link>
           <a>about</a>
