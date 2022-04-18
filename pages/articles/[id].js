@@ -1,13 +1,16 @@
+import Head from 'next/head';
+import Link from "next/link";
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 
-import { client } from '../../libs/client';
-import styles from '../../styles/Articles.module.scss';
 import 'highlight.js/styles/night-owl.css';
+import { client } from '../../libs/client';
+import { formatDate } from '../../src/utils/date';
+import styles from '../../styles/Articles.module.scss';
 import Layout from '../../src/components/Layout/Layout';
-import Head from 'next/head';
 
 export default function BlogId({ articles, highlightedBody }) {
+  console.log(articles)
   return (
     <Layout>
       <Head>
@@ -15,16 +18,31 @@ export default function BlogId({ articles, highlightedBody }) {
           {articles.title}
         </title>
       </Head>
-      <main className={styles.main}>
-        <h1 className={styles.title}>{articles.title}</h1>
-        <p className={styles.publishedAt}>{articles.publishedAt}</p>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: highlightedBody,
-          }}
-          className={styles.post}
-        />
-      </main>
+      <div className={styles.container}>
+        <div className={styles.inner}>
+          <div className={styles.heading}>
+            <h1 className={styles.title}>{articles.title}</h1>
+            <time className={styles.time} dateTime={formatDate(articles.createdAt ?? '', 'YYYY-MM-DD')}>
+              {formatDate(articles.createdAt ?? '', 'YYYY/MM/DD')}
+            </time>
+            {articles.tags.map((tag) => (
+              <span key={tag['tag']} className={styles.tag}>{tag['tag']}</span>
+            ))}
+          </div>
+          <p className={styles.desc}>{articles.desc}</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: highlightedBody,
+            }}
+            className={styles.post}
+          />
+          <Link href="/">
+            <div className={styles.more}>
+              <p className={styles.moreText}>back</p>
+            </div>
+          </Link>
+        </div>
+      </div>
     </Layout>
   );
 }

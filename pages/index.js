@@ -1,13 +1,12 @@
 import Link from "next/link";
+
 import { client } from "../libs/client";
+import { formatDate } from '../src/utils/date';
+import styles from '../styles/Home.module.scss';
 import Layout from "../src/components/Layout/Layout";
 import Mv from "../src/components/Mv/Mv";
-import { formatDate } from '../src/utils/date';
-
-import styles from '../styles/Home.module.scss';
 
 export default function Home({ articles }) {
-  console.log(articles);
   return (
     <Layout>
       <Mv />
@@ -27,10 +26,8 @@ export default function Home({ articles }) {
                   </time>
                   <h2 className={styles.title}>{articles.title}</h2>
                   <p className={styles.text}>{articles.desc}</p>
-                  <div>
-                    <div className={styles.more}>
-                      <p className={styles.moreText}>more</p>
-                    </div>
+                  <div className={styles.more}>
+                    <p className={styles.moreText}>more</p>
                   </div>
                 </div>
               </a>

@@ -1,17 +1,51 @@
-.main {
-  width: 960px;
-  margin: 0 auto;
+.container {
+  max-width: var(--content-width);
+  margin: 80px auto 0;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 4px 4px -4px rgb(0 0 0 / 10%);
+}
+
+.inner {
+  padding: 60px;
+}
+
+.heading {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(200,200,200,.5);
 }
 
 .title {
+  font-size: 3rem;
+  font-weight: bold;
   margin-bottom: 20px;
+}
+
+.time {
+  color: #808080;
+  font-size: 1.2rem;
+}
+
+.tag {
+  font-size: 1.2rem;
+  padding: 5px 0.5em;
+  margin-left: 10px;
+  background-color: var(--color-main);
 }
 
 .publishedAt {
   margin-bottom: 40px;
 }
 
+.desc {
+  margin-top: 40px;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  letter-spacing: 0.2px;
+}
+
 .post {
+  margin-top: 40px;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
   & > h1 {
     font-size: 30px;
     font-weight: bold;
@@ -22,7 +56,7 @@
   }
 
   & > h2 {
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: bold;
     margin: 40px 0 16px;
     border-bottom: 1px solid #ddd;
@@ -40,6 +74,61 @@
   & > pre {
     background-color: #364549;
     color: #e3e3e3;
-    font-size: 1.2em;
+    font-size: 1.6rem;
+    margin: 15px 0;
   }
+  & > p > code {
+    padding: 2px 4px;
+    background: rgb(244, 245, 247);
+    border-radius: 3px;
+  }
+}
+
+.more {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  // justify-content: right;
+  margin-left: auto;
+  margin-top: 40px;
+  // padding: 10px;
+  width: 105px;
+  // transform: translateX(-12px);
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    background-color: rgba(200,200,200,.8);
+    height: 1px;
+    // margin-top: 25px;
+    transition: all .4s;
+  }
+  &::before {
+    position: absolute;
+    content: '';
+    width: 8px;
+    height: 8px;
+    // border: 1px solid;
+    border-top: 1px solid rgba(200,200,200,.8);
+    border-left: 1px solid rgba(200,200,200,.8);
+    transform: rotate(-45deg);
+    transition: all .4s;
+  }
+  &:hover {
+    &::before {
+      transform: translateX(-10px) rotate(-45deg);
+    }
+    &::after {
+      transform: translateX(-10px);
+    }
+  }
+}
+
+.moreText {
+  position: absolute;
+  font-size: 1.4rem;
+  right: 0;
+  transform: translateY(10px);
+  z-index: 2;
 }

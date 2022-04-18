@@ -2,13 +2,13 @@
   // background-color: seashell;
   margin: 80px auto 0;
   // margin-top: 80px;
-  max-width: 1040px;
+  max-width: var(--content-width);
 }
 
 .articleList {
   border-bottom: 1px solid rgba(200,200,200,.5);
   padding: 70px;
-  cursor: pointer;
+  // cursor: pointer;
   &:nth-child(2n) {
     & .link {
       flex-direction: row-reverse;
@@ -51,23 +51,21 @@
 .post {
   position: relative;
   width: 60%;
-  line-height: 3.7em;
-  
 }
 
 .time {
   color: #808080;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .title {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .text {
   color: #808080;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .more {
@@ -101,7 +99,7 @@
 
 .moreText {
   position: relative;
-  font-size: 1.2rem;
-  transform: translate(-78px, 10px);
+  font-size: 1.4rem;
+  transform: translate(-75px, 10px);
   z-index: 2;
 }
