@@ -1,13 +1,15 @@
 import Link from "next/link";
 
-import { client } from "../libs/client";
-import { formatDate } from '../src/utils/date';
-import styles from '../styles/Home.module.scss';
-import Layout from "../src/components/Layout/Layout";
-import Mv from "../src/components/Mv/Mv";
-import Pagination from "../src/components/Pagination/Pagination";
+import { client } from "../../libs/client";
+import { formatDate } from '../../src/utils/date';
+import styles from '../../styles/Home.module.scss';
+import Layout from "../../src/components/Layout/Layout";
+import Mv from "../../src/components/Mv/Mv";
+import Pagination from "../../src/components/Pagination/Pagination";
 
-export default function Home({ articles, totalCount }) {
+const PER_PAGE = 5; 
+
+export default function BlogPageId({ articles, totalCount }) {
   return (
     <Layout>
       <Mv />
@@ -43,9 +45,21 @@ export default function Home({ articles, totalCount }) {
   );
 }
 
+// 動的なページを作成
+// 動的なページを作成
+export const getStaticPaths = async () => {
+  const repos = await client.get({ endpoint: "articles" });
+  const pageNumbers = [];
+  const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+  const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => `/page/${repo}`);
+
+  return { paths, fallback: false };
+};
+
 // データをテンプレートに受け渡す部分の処理を記述します
-export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: "articles", queries: { limit: 20, offset: 0, limit: 5 }});
+export const getStaticProps = async (context) => {
+  const id = context.params.id;
+  const data = await client.get({ endpoint: "articles", queries: { offset: (id - 1) * 5, limit: 5 }});
 
   return {
     props: {
