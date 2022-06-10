@@ -8,6 +8,7 @@
 
 .pager {
   color: rgb(100,200,200);
+  
 }
 
 .prev {
@@ -22,6 +23,7 @@
     transform: translate(-35%, -50%) rotate(-45deg);
     height: 8px;
     width: 8px;
+    pointer-events: none;
   }
 }
 
@@ -37,14 +39,30 @@
     transform: translate(-65%, -50%) rotate(45deg);
     height: 8px;
     width: 8px;
+    pointer-events: none;
   }
 }
 
 .number {
-  border: 1px solid;
+  // border: 1px solid;
+  position: relative;
   padding: .5em .7em;
   font-size: 1.6rem;
-  &:hover {
+  // pointer-events: visible;
+  &::after {
+    position: absolute;
+    content: "";
     background-color: #333;
+    opacity: 0;
+    height: 1px;
+    width: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover {
+    &::after {
+      opacity: 0.6;
+    }
   }
 }

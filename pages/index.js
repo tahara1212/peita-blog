@@ -46,7 +46,7 @@ export default function Home({ articles, totalCount }) {
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: "articles", queries: { limit: 20, offset: 0, limit: 5 }});
-
+  
   return {
     props: {
       articles: data.contents,
