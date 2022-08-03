@@ -10,7 +10,7 @@ const Pagination = ({ totalCount }) => {
   
   // URLから現在のページ位置を取得
   const router = useRouter(); 
-  const currentPage = Number(router.query.id);
+  const currentPage = router.query.id ? Number(router.query.id) : 1;
 
   // ページ数
   const showPageNum = Math.ceil(totalCount / PER_PAGE);
