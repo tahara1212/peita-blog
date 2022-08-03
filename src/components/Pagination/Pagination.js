@@ -33,20 +33,38 @@ const Pagination = ({ totalCount }) => {
   }
 
   const pagerNumber = (number) => {
-    return (
+    if (currentPage === number) {
+      return (
+        <li className={styles.pager}>
+          <Link href={ `/page/${number}`}>
+            <a className={`${styles.number} ${styles.current}`}>{number}</a>
+          </Link>
+        </li>
+      )
+    } else {
+      return (
         <li className={styles.pager}>
           <Link href={ `/page/${number}`}>
             <a className={styles.number}>{number}</a>
           </Link>
         </li>
       )
+    }
   }
 
   const nextArrow = () => {
-    if (currentPage !== showPageNum) {
+    if (currentPage !== showPageNum && currentPage) {
       return (
         <li className={`${styles.pager} ${styles.next}`}>
           <Link href={"/page/" + (currentPage + 1)}>
+            <a className={styles.number}></a>
+          </Link>
+        </li>
+      )
+    } else if (!currentPage) {
+      return (
+        <li className={`${styles.pager} ${styles.next}`}>
+          <Link href={"/page/2"}>
             <a className={styles.number}></a>
           </Link>
         </li>
